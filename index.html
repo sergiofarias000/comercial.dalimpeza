@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<!-- saved from url=(0054)file:///C:/Users/User/Downloads/atacado-dalimpeza.html -->
-<html lang="pt-BR"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Atacado.daLimpeza — Central de Decisão</title>
-<link href="./Atacado.daLimpeza — Central de Decisão_files/css2" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Syne:wght@400..800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0a0b0d;--bg2:#111318;--bg3:#191d25;--bg4:#1f242e;
@@ -12,6 +14,8 @@
   --text:#e8eaf0;--muted:#7a8099;
   --accent:#00d4aa;--accent2:#3b82f6;
   --warn:#f59e0b;--danger:#ef4444;--success:#22c55e;
+  --green:var(--success);--blue:var(--accent2);
+  --bg-card:var(--bg2);--bg-card2:var(--bg3);
   --sidebar:220px;--header:56px;--radius:10px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -60,7 +64,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 .dot-red{background:var(--danger);}
 .status{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 9px;border-radius:20px;letter-spacing:.3px;}
 .s-green{background:rgba(34,197,94,.12);color:var(--success);border:1px solid rgba(34,197,94,.25);}
-.s-yellow{background:rgba(245,158,11,.12);color:var(--warn);border:1px solid rgba(245,158,11,.25);}
+.s-yellow,.s-warn{background:rgba(245,158,11,.12);color:var(--warn);border:1px solid rgba(245,158,11,.25);}
 .s-red{background:rgba(239,68,68,.12);color:var(--danger);border:1px solid rgba(239,68,68,.25);}
 .s-blue{background:rgba(59,130,246,.12);color:var(--accent2);border:1px solid rgba(59,130,246,.25);}
 .s-accent{background:rgba(0,212,170,.12);color:var(--accent);border:1px solid rgba(0,212,170,.25);}
@@ -72,7 +76,7 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
 .btn-sm{padding:4px 10px;font-size:11px;}
 .divider{height:1px;background:var(--border);margin:16px 0;}
 .progress-wrap{background:var(--bg3);border-radius:4px;height:6px;overflow:hidden;margin-top:6px;}
-.progress-bar{height:100%;border-radius:4px;transition:width .5s ease;}
+.progress-bar,.bar{height:100%;border-radius:4px;transition:width .5s ease;}
 .pb-green{background:var(--success);}.pb-blue{background:var(--accent2);}.pb-warn{background:var(--warn);}.pb-accent{background:var(--accent);}
 .tbl{width:100%;border-collapse:collapse;}
 .tbl th{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);padding:10px 14px;text-align:left;border-bottom:1px solid var(--border);font-weight:600;}
@@ -204,25 +208,25 @@ html,body{height:100%;font-family:'DM Sans',sans-serif;background:var(--bg);colo
     <div class="brand-sub">Central de Decisão</div>
   </div>
   <div class="nav-section">Principal</div>
-  <div class="nav-item" onclick="nav(&#39;visao&#39;)"><span class="nav-icon">◉</span>Visão Geral</div>
-  <div class="nav-item" onclick="nav(&#39;campo&#39;)"><span class="nav-icon">⬡</span>Campo de Comando</div>
+  <div class="nav-item" data-nav="visao" onclick="nav(&#39;visao&#39;)"><span class="nav-icon">◉</span>Visão Geral</div>
+  <div class="nav-item" data-nav="campo" onclick="nav(&#39;campo&#39;)"><span class="nav-icon">⬡</span>Campo de Comando</div>
   <div class="nav-section">Operação</div>
-  <div class="nav-item" onclick="nav(&#39;pedidos&#39;)"><span class="nav-icon">◫</span>Pedidos</div>
-  <div class="nav-item" onclick="nav(&#39;expedicao&#39;)"><span class="nav-icon">▦</span>Expedição</div>
-  <div class="nav-item" onclick="nav(&#39;estoque&#39;)"><span class="nav-icon">◧</span>Estoque e Faltas</div>
+  <div class="nav-item" data-nav="pedidos" onclick="nav(&#39;pedidos&#39;)"><span class="nav-icon">◫</span>Pedidos</div>
+  <div class="nav-item" data-nav="expedicao" onclick="nav(&#39;expedicao&#39;)"><span class="nav-icon">▦</span>Expedição</div>
+  <div class="nav-item" data-nav="estoque" onclick="nav(&#39;estoque&#39;)"><span class="nav-icon">◧</span>Estoque e Faltas</div>
   <div class="nav-section">Time</div>
-  <div class="nav-item" onclick="nav(&#39;comercial&#39;)"><span class="nav-icon">◈</span>Comercial</div>
-  <div class="nav-item" onclick="nav(&#39;logistica&#39;)"><span class="nav-icon">◉</span>Logística</div>
-  <div class="nav-item" onclick="nav(&#39;admin&#39;)"><span class="nav-icon">◫</span>Administrativo</div>
+  <div class="nav-item" data-nav="comercial" onclick="nav(&#39;comercial&#39;)"><span class="nav-icon">◈</span>Comercial</div>
+  <div class="nav-item" data-nav="logistica" onclick="nav(&#39;logistica&#39;)"><span class="nav-icon">◉</span>Logística</div>
+  <div class="nav-item" data-nav="admin" onclick="nav(&#39;admin&#39;)"><span class="nav-icon">◫</span>Administrativo</div>
   <div class="nav-section">Estrutura</div>
-  <div class="nav-item" onclick="nav(&#39;organograma&#39;)"><span class="nav-icon">⬡</span>Organograma</div>
-  <div class="nav-item" onclick="nav(&#39;reunioes&#39;)"><span class="nav-icon">◈</span>Reuniões</div>
-  <div class="nav-item" onclick="nav(&#39;documentos&#39;)"><span class="nav-icon">▦</span>Documentos</div>
+  <div class="nav-item" data-nav="organograma" onclick="nav(&#39;organograma&#39;)"><span class="nav-icon">⬡</span>Organograma</div>
+  <div class="nav-item" data-nav="reunioes" onclick="nav(&#39;reunioes&#39;)"><span class="nav-icon">◈</span>Reuniões</div>
+  <div class="nav-item" data-nav="documentos" onclick="nav(&#39;documentos&#39;)"><span class="nav-icon">▦</span>Documentos</div>
   <div class="nav-section">Gestão</div>
-  <div class="nav-item" onclick="nav(&#39;decisoes&#39;)"><span class="nav-icon">◧</span>Decisões</div>
-  <div class="nav-item" onclick="nav(&#39;manual&#39;)"><span class="nav-icon">◉</span>Manual Operacional</div>
-  <div class="nav-item" onclick="nav(&#39;ideias&#39;)"><span class="nav-icon">◈</span>Ideias e Brainstorms</div>
-  <div class="nav-item" onclick="nav(&#39;config&#39;)"><span class="nav-icon">◫</span>Configurações</div>
+  <div class="nav-item" data-nav="decisoes" onclick="nav(&#39;decisoes&#39;)"><span class="nav-icon">◧</span>Decisões</div>
+  <div class="nav-item" data-nav="manual" onclick="nav(&#39;manual&#39;)"><span class="nav-icon">◉</span>Manual Operacional</div>
+  <div class="nav-item" data-nav="ideias" onclick="nav(&#39;ideias&#39;)"><span class="nav-icon">◈</span>Ideias e Brainstorms</div>
+  <div class="nav-item" data-nav="config" onclick="nav(&#39;config&#39;)"><span class="nav-icon">◫</span>Configurações</div>
 </nav>
 <div id="main">
   <div id="header">
@@ -1082,7 +1086,11 @@ function nav(id) {
   if(sec) sec.style.display='block';
   const ni = document.querySelector('[data-nav="'+id+'"]');
   if(ni) ni.classList.add('active');
-  window.scrollTo(0,0);
+  const titleEl = document.getElementById('pageTitle');
+  const heading = sec && sec.querySelector('.sec-title, h2');
+  if(titleEl && heading) titleEl.textContent = heading.textContent.trim();
+  const content = document.getElementById('content');
+  if(content) content.scrollTop = 0;
   // Lazy render
   if(id==='reunioes') buildMeetings();
   if(id==='documentos') buildDocs();
@@ -1109,7 +1117,7 @@ const orders = [
 ];
 
 function buildKanban() {
-  const grid = document.getElementById('kanban-grid');
+  const grid = document.getElementById('kanban');
   if(!grid || grid.children.length > 0) return;
   kanbanColIds.forEach((colId,i) => {
     const cards = orders.filter(o => o.col === colId);
@@ -1251,13 +1259,12 @@ function openAddDecision() {
     </div>`);
 }
 
-function switchTab(tabGroup, tabId) {
-  document.querySelectorAll(`[data-tabgroup="${tabGroup}"]`).forEach(t => {
-    t.style.display = t.dataset.tab === tabId ? 'block' : 'none';
-  });
-  document.querySelectorAll(`[data-tabbtng="${tabGroup}"]`).forEach(b => {
-    b.className = b.dataset.tabbtn === tabId ? 'btn btn-primary btn-sm' : 'btn btn-ghost btn-sm';
-  });
+function switchTab(el, tabId) {
+  if(!el || !el.parentElement) return;
+  el.parentElement.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === el));
+  const root = el.parentElement.parentElement;
+  if(!root) return;
+  root.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === tabId));
 }
 
 // ===== TOAST =====
@@ -1275,7 +1282,7 @@ function toast(msg, type='info') {
 function updateDate() {
   const now = new Date();
   const opts = { weekday:'long', day:'numeric', month:'long', year:'numeric' };
-  const el = document.getElementById('live-date');
+  const el = document.getElementById('liveDate');
   if(el) el.textContent = now.toLocaleDateString('pt-BR', opts) + ' · ' + now.toLocaleTimeString('pt-BR', {hour:'2-digit',minute:'2-digit'});
 }
 setInterval(updateDate, 30000);
@@ -1296,7 +1303,7 @@ function animateCounters() {
 }
 
 // ===== INIT =====
-nav('visao-geral');
+nav('visao');
 setTimeout(animateCounters, 200);
 </script>
 
